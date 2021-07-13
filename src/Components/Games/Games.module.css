@@ -1,0 +1,46 @@
+.Container {
+    width: 80%;
+    background-color: rgb(29, 29, 29);
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ListStyle {
+    list-style: none;
+    float: left;
+}
+
+.Content {
+    background-color: rgb(54, 54, 54);
+    background: linear-gradient(70deg, rgb(46, 46, 46), rgb(0, 0, 0));
+    border-radius: 20px;
+    width: 330px;
+    height: 400px;
+    margin-left: 15px;
+    margin-bottom: 30px;
+}
+
+.Img {
+    /* border-radius: 20px; */
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    width: 330px;
+    height: 270px;
+}
+
+.Title {
+    color: white;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.Desc {
+    color: white;
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+}
