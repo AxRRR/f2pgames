@@ -8,9 +8,7 @@ export const Details = (props) => {
   const [gdetails, setgDetails] = useState(0);
   const state = useSelector((state) => state.game);
 
-  useEffect(() => {
-    getDetailsGame();
-  }, [state]);
+  useEffect(() => { getDetailsGame(); }, [state]);
 
   const getDetailsGame = async () => {
     const axios = require("axios").default;

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Details } from './Components/Details/Details';
 import { Games } from './Components/Games/Games';
-import { Navbar } from './Header/Navbar/Navbar';
+import { Filter } from './Layout/Filter/Filter';
+import { Navbar } from './Layout/Navbar/Navbar';
 
 export const IndexPage = () => {
     const [showModal, setShowModal] = useState(true);
@@ -12,6 +13,7 @@ export const IndexPage = () => {
     return (
         <div>
             <Navbar />
+            <Filter />
             <Games onShowModal={showModalHandler} />
             {showModal && <Details onClose={hideModalHandler} /> }
         </div>

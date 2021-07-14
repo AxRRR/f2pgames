@@ -17,7 +17,7 @@ const getGames = async () => {
         headers: {
             'x-rapidapi-key': '07089da5c1msh4207da2f8fccca3p171009jsn2878b94e6662',
             'x-rapidapi-host': 'free-to-play-games-database.p.rapidapi.com'
-  }
+        }
       };
       
       axios(config)
