@@ -2,10 +2,9 @@ import axios from 'axios';
 import React, { Fragment, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { saveGameDetails } from '../../actions/game';
-import { Details } from '../Details/Details';
 import classes from './Games.module.css';
 
-export const Games = () => {
+export const Games = (props) => {
 const [gamesdata, setGamesData] = useState([]);
 const dispatch = useDispatch();
 
@@ -35,9 +34,10 @@ const handleDetailsGame = ( getDataDetailsInd ) => {
     dispatch(
         saveGameDetails( getDataDetailsInd )
     );
+    props.onShowModal();
 }
 
-const RenderGames = gamesdata.slice(0, 8)
+const RenderGames = gamesdata.slice(0, 50)
 
     return (
         <Fragment>

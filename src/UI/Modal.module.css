@@ -24,6 +24,7 @@
   }
 
   .modal::-webkit-scrollbar {
+    width: 0px;
     -webkit-appearance: none;
 }
   
