@@ -1,9 +1,13 @@
 import axios from 'axios';
 import React, { Fragment, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { saveGameDetails } from '../../actions/game';
+import { Details } from '../Details/Details';
 import classes from './Games.module.css';
 
 export const Games = () => {
 const [gamesdata, setGamesData] = useState([]);
+const dispatch = useDispatch();
 
 useEffect(() => { getGames(); }, []);
 
@@ -27,17 +31,27 @@ const getGames = async () => {
       
 }
 
+const handleDetailsGame = ( getDataDetailsInd ) => {
+    dispatch(
+        saveGameDetails( getDataDetailsInd )
+    );
+}
+
 const RenderGames = gamesdata.slice(0, 8)
 
     return (
         <Fragment>
             <div className={classes.Container}>
-                <ul >
+                <ul>
                 {gamesdata.length >= 1 ? RenderGames.map((e) => (
                         <li 
                             key={e.id}
                             className={classes.ListStyle}>
-                                <div className={classes.Content}>
+                                <div 
+                                    className={classes.Content}
+                                    onClick={() => handleDetailsGame({
+                                        id: e.id
+                                    })}>
                                     <img 
                                         src={e.thumbnail} 
                                         alt={e.title} 

@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { IndexPage } from './IndexPage';
+import { F2pGamesApp } from './F2pGamesApp';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <IndexPage />
+    <F2pGamesApp />
   </React.StrictMode>,
   document.getElementById('root')
 );
