@@ -14,10 +14,12 @@ export const useAxiosWithParams = ({
   parameter6,
 }) => {
   const [resp, setResp] = useState(null);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
+  const [isLoading, SetIsLoading] = useState(false);
   const apiUrl = "https://free-to-play-games-database.p.rapidapi.com/api/games";
 
   useEffect(() => {
+    SetIsLoading(true);
     const options = {
       method: methodname,
       url: `${apiUrl}?${parameter1}=${parameter2}&${parameter3}=${parameter4}&${parameter5}=${parameter6}`,
@@ -35,9 +37,10 @@ export const useAxiosWithParams = ({
       .catch(function (error) {
         setError(error);
       });
+      SetIsLoading(false);
   }, [methodname, parameter1, parameter2, parameter3, parameter4, parameter5, parameter6]);
 
-  return { resp, error };
+  return { resp, error, isLoading };
 };
 
 
