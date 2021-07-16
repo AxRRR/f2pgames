@@ -6,7 +6,7 @@ import classes from './RenderGames.module.css';
 export const RenderGames = (props) => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.game);
-  console.log(state)
+  
   useEffect(() => {}, [state]);
 
   const handleDetailsGame = (getDataDetailsInd) => {
@@ -18,7 +18,7 @@ export const RenderGames = (props) => {
     <div>
       <div className={classes.Container}>
         <ul>
-          {state.gamesdata !== undefined && state.gamesdata.map((e) => (
+        {state.GetGamesData.length >= 1 ? state.GetGamesData.map((e) => (
             <li key={e.id} className={classes.ListStyle}>
               <div
                 className={classes.Content}
@@ -33,7 +33,7 @@ export const RenderGames = (props) => {
                 <p className={classes.Desc}>{e.short_description}</p>
               </div>
             </li>
-          ))}
+          )) : <p className={classes.Error}>No matches found</p>}
         </ul>
       </div>
     </div>

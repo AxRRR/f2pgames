@@ -1,0 +1,19 @@
+.titleheader{
+    color: rgb(197, 197, 197);
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 22px;
+    margin-top: 6px;
+}
+
+.container{
+    border-radius: 10px;
+    width: 75%;
+    height: auto;
+    margin-top: 1rem;
+    float: right;
+}
+
+.img {
+    width: 400px;
+}

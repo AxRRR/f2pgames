@@ -2,7 +2,7 @@
 export const saveGamesData = ( GetGamesData ) => ({
     type: 'gdata',
     payload: {
-        gamesdata: GetGamesData
+        GetGamesData
     }
 })
 

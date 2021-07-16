@@ -1,14 +1,15 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { filterGamesTitle, saveGamesData } from '../../actions/game';
+import { ClearFilter } from '../../Components/Buttons/ClearFilter';
 import { useAxiosWithParams } from '../../hooks/useAxios';
 import { useFormAutomatic } from '../../hooks/useFormAutomatic';
 import classes from './Filter.module.css'
 
 export const Filter = () => {
     const [saveData, setSaveData] = useState('');
-
     const dispatch = useDispatch();
+    
     const [form, handlerInputChange] = useFormAutomatic({
         filterplatform: '',
         filtergenre: '',
@@ -16,6 +17,8 @@ export const Filter = () => {
         filtertitle: ''
     })
 
+    const { filterplatform, filtergenre, filtertags, filtertitle } = form
+    
     const { resp, error } = useAxiosWithParams({
         methodname: 'GET',
         parameter1: saveData.platform,
@@ -27,19 +30,16 @@ export const Filter = () => {
     });
 
     useEffect(() => {
+        if(resp !== null) {
             dispatch(
             saveGamesData(resp)
         );
+        }
     }, [resp, error]);
 
-    const { filterplatform, filtergenre, filtertags, filtertitle } = form
 
     const handleSearch = (e) => {
         e.preventDefault();
-        if(filtertitle.length > 1){
-            dispatch(filterGamesTitle(filtertitle));
-            console.log(filtertitle)
-        }
         setSaveData({
             platform: 'platform', 
             parameter1: filterplatform,
@@ -53,21 +53,15 @@ export const Filter = () => {
     return (
         <Fragment>
             <form onSubmit={handleSearch}>
-                <div className={classes.container}>
-                    <textarea 
-                        type='text' 
-                        name='filtertitle' 
-                        onChange={handlerInputChange} 
-                        className={classes.title}
-                        placeholder='search game' />
+                <div className={classes.container}>           
                     <select 
                         type='text'
                         name="filterplatform"
                         onChange={handlerInputChange}
                         className={classes.platform}>
                             <option value=''>platform</option>
-                            <option value='pc'>PC</option>
-                            <option value='browser'>Browser</option>
+                            <option value='pc'>Windows PC</option>
+                            <option value='browser'>Browser Web</option>
                     </select>
                     <select 
                         name='filtergenre'
@@ -93,6 +87,7 @@ export const Filter = () => {
                         className={classes.button}>
                             Apply
                     </button>
+                    <ClearFilter />
                 </div>
             </form>
         </Fragment>

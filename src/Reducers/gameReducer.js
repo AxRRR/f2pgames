@@ -3,8 +3,8 @@ export const gameReducer = ( state = [], action ) => {
         case 'gdata':
             return action.payload
         case 'gtitle':
-            return state.gamesdata.filter(getTitle => getTitle.title === action.payload.GetTitleToFilter);
-
+            return {GetGamesData: state.GetGamesData.filter(getTitle => getTitle.title === action.payload.GetTitleToFilter)}
+            
         default:
             return state;
     }
