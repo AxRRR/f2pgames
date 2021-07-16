@@ -1,5 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { Filter } from '../Layout/Filter/Filter';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFilter } from '@fortawesome/free-solid-svg-icons';
 
 import classes from './ShowFilter.module.css'
 
@@ -20,7 +22,10 @@ export const ShowFilter = () => {
                 
                 <p 
                     className={classes.filterstyle}
-                    onClick={handleShowFilter}>Filter games</p>
+                    onClick={handleShowFilter}><FontAwesomeIcon
+                    icon={faFilter}
+                    className={classes.icon}
+                  />Filter games</p>
                 {showFilter && <Filter onCloseFilter={handleCloseFilter} />}
             </div>
         </Fragment>

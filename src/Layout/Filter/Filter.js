@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { filterGamesTitle, saveGamesData } from '../../actions/game';
+import { saveGamesData } from '../../actions/game';
 import { ClearFilter } from '../../Components/Buttons/ClearFilter';
 import { useAxiosWithParams } from '../../hooks/useAxios';
 import { useFormAutomatic } from '../../hooks/useFormAutomatic';
@@ -9,15 +9,14 @@ import classes from './Filter.module.css'
 export const Filter = () => {
     const [saveData, setSaveData] = useState('');
     const dispatch = useDispatch();
-    
+
     const [form, handlerInputChange] = useFormAutomatic({
         filterplatform: '',
         filtergenre: '',
         filtertags: '',
-        filtertitle: ''
     })
 
-    const { filterplatform, filtergenre, filtertags, filtertitle } = form
+    const { filterplatform, filtergenre, filtertags } = form
     
     const { resp, error } = useAxiosWithParams({
         methodname: 'GET',
@@ -50,6 +49,16 @@ export const Filter = () => {
         })
     }
 
+    const genre = ['mmorpg', 'shooter', 'strategy', 
+                'moba', 'racing', 'sports', 'social', 'sandbox', 
+                'open-world', 'survival', 'pvp',' pve', 'pixel', 
+                'voxel', 'zombie', 'turn-based', 'first-person', 
+                'third-Person', 'top-down', 'tank', 'space', 'sailing', 
+                'side-scroller', 'superhero', 'permadeath', 'card', 
+                'battle-royale', 'mmo', 'mmofps', 'mmotps', 'anime', 'fantasy', 
+                'sci-fi', 'fighting', 'action-rpg', 'action', 'military', 
+                'martial-arts', 'flight', 'low-spec', 'tower-defense', 'horror', 'mmorts'];
+
     return (
         <Fragment>
             <form onSubmit={handleSearch}>
@@ -68,10 +77,9 @@ export const Filter = () => {
                         onChange={handlerInputChange}
                         className={classes.genre}>
                             <option value=''>genre</option>
-                            <option value='shooter'>Shooter</option>
-                            <option value='mmorpg'>MMORPG</option>
-                            <option value='strategy'>Strategy</option>
-                            <option value='survival'>Survival</option>
+                            {genre.map((g) => (
+                                <option value={g}>{g}</option>
+                            ))}
                     </select>
                     <select 
                         name="filtertags"

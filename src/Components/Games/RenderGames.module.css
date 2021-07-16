@@ -9,19 +9,26 @@
 .ListStyle {
     list-style: none;
     float: left;
+    transition: transform .10s; 
 }
+
+.ListStyle:hover {
+    transform: scale(0.9); 
+    transition-duration: 10ms; 
+} 
 
 .Content {
     background-color: rgb(54, 54, 54);
-    background: linear-gradient(0deg, rgb(18, 0, 26), rgb(45, 0, 56));
-    box-shadow: 6px 4px 4px rgba(24, 0, 36, 0.5);
-    border-radius: 20px;
+    background-color: rgb(54, 54, 54);
+    box-shadow: 6px 4px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
     width: 330px;
     height: 370px;
     margin-left: 15px;
     margin-bottom: 30px;
     animation: slide-down 300ms ease-out forwards;
 }
+
 
 @keyframes slide-down {
     from {
@@ -35,9 +42,8 @@
   }
 
 .Img {
-    /* border-radius: 20px; */
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     width: 330px;
     height: 220px;
 }
@@ -46,16 +52,21 @@
     color: white;
     font-size: 18px;
     font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
+    text-align: left;
+    margin-left: 10px;
 }
 
 .Desc {
     color: white;
     font-size: 12px;
     font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
+    text-align: left;
     padding-left: 10px;
     padding-right: 10px;
+    height: 40px;
+    white-space: pre-line; 
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .Error {
@@ -65,4 +76,19 @@
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     padding-left: 20px;
+}
+
+.Platform {
+    color: white;
+    width: 190px;
+    float: left;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 10px;
+}
+
+.Release {
+    color: white;
+    width: 100px;
+    float: right;
+    font-family: Arial, Helvetica, sans-serif;
 }

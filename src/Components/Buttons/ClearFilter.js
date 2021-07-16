@@ -8,7 +8,7 @@ export const ClearFilter = () => {
 
     const dispatch = useDispatch();
 
-    const { resp, error } = useAxiosWithParams({
+    const { resp } = useAxiosWithParams({
         methodname: 'GET',
         parameter1: 'sort-by',
         parameter2: 'popularity',

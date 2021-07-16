@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { saveGameDetails } from '../../actions/select';
 import { useAxiosWithParams } from '../../hooks/useAxios';
 import classes from './Recent.module.css'
@@ -7,6 +8,7 @@ import classes from './Recent.module.css'
 export const Recent = (props) => {
     const dispatch = useDispatch();
     const state = useSelector((state) => state.game);
+    const [incrementList, setIncrementList] = useState(9);
 
     useEffect(() => {}, [state]);
   
@@ -15,7 +17,7 @@ export const Recent = (props) => {
       props.onShowModal();
     };
 
-    const { resp, error } = useAxiosWithParams({
+    const { resp } = useAxiosWithParams({
         methodname: 'GET',
         parameter1: 'platform',
         parameter2: 'pc',
@@ -25,10 +27,12 @@ export const Recent = (props) => {
         parameter6: 'release-date',
     });
 
+    const handleIncrementList = () => setIncrementList(incrementList+5);
+
     return (
         <div>
             <p className={classes.titleheader}>Latest games:</p>
-            {resp !== null && resp.slice(0,6).map((r) => (
+            {resp !== null && resp.slice(0,incrementList).map((r) => (
                 <div 
                     className={classes.container}
                     onClick={() =>
@@ -46,6 +50,16 @@ export const Recent = (props) => {
                     <p className={classes.infogame4}>{r.platform}</p>
                 </div>
             ))}
+            {incrementList < 20 && <button 
+                className={classes.button}
+                onClick={handleIncrementList}>View more...
+            </button>}
+            {incrementList >= 20 && <Link to='/games'>
+                <button 
+                    className={classes.button}>See all games
+                </button>
+                </Link>
+            }
         </div>
     );
 };

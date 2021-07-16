@@ -14,7 +14,13 @@
     padding-top: 20px;
     padding-left: 20px;
     background-color: rgb(54, 54, 54);
+    transition: transform .10s; 
 }
+
+.container:hover {
+    transform: scale(1.1); 
+    transition-duration: 10ms; 
+} 
 
 .img {
     border-radius: 5px;
@@ -59,4 +65,19 @@
     float: right;
     width: 35rem;
     margin-top: 0rem;
+}
+
+.button {
+    border-radius: 8px;
+    border-color: rgb(27, 27, 27);
+    background-color: rgb(27, 27, 27);
+    box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
+    color: rgb(255, 255, 255);
+    width: 150px;
+    height: 35px;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 30px;
+    margin-right: 20px;
 }
