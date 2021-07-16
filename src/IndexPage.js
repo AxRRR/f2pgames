@@ -6,7 +6,6 @@ import { Navbar } from './Layout/Navbar/Navbar';
 
 export const IndexPage = () => {
     const [showModal, setShowModal] = useState(true);
-
     const showModalHandler = () => { setShowModal(true); };
     const hideModalHandler = () => { setShowModal(false); };
 

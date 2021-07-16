@@ -6,11 +6,9 @@ import classes from "./Details.module.css";
 
 export const Details = (props) => {
   const [gdetails, setgDetails] = useState(0);
-  const state = useSelector((state) => state.game);
+  const state = useSelector((state) => state.select);
 
-  useEffect(() => { getDetailsGame(); }, [state]);
-
-  const getDetailsGame = async () => {
+  useEffect(() => { 
     const axios = require("axios").default;
     const options = {
       method: "GET",
@@ -23,7 +21,7 @@ export const Details = (props) => {
         "x-rapidapi-host": "free-to-play-games-database.p.rapidapi.com",
       },
     };
-
+  
     axios
       .request(options)
       .then(function (response) {
@@ -32,7 +30,9 @@ export const Details = (props) => {
       .catch(function (error) {
         console.error(error);
       });
-  };
+
+  }, [state]);
+
   return (
     <Fragment>
       {gdetails !== 0 && (
@@ -54,10 +54,11 @@ export const Details = (props) => {
               <p className={classes.text}>Genre: {gdetails.genre}</p>
               <p className={classes.text}>Requirements:</p>
             </div>
+            {gdetails.minimum_system_requirements !== undefined ? 
             <div className={classes.specbox}>
               <p className={classes.text}>
                 {gdetails.minimum_system_requirements.os}
-              </p>
+              </p>               
               <p className={classes.text}>
                 {gdetails.minimum_system_requirements.graphics}
               </p>
@@ -70,7 +71,7 @@ export const Details = (props) => {
               <p className={classes.text}>
                 {gdetails.minimum_system_requirements.storage}
               </p>
-            </div>
+            </div> : <div className={classes.specbox}><p className={classes.text}>No requirements available to this game</p></div>}
             <div className={classes.gallerybox}>
               {gdetails.screenshots.map((i) => (
                 <img

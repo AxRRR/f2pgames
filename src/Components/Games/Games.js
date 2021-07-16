@@ -1,70 +1,29 @@
-import axios from 'axios';
 import React, { Fragment, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { saveGameDetails } from '../../actions/game';
-import classes from './Games.module.css';
+import { saveGamesData } from '../../actions/game';
+import { useAxiosWithParams } from '../../hooks/useAxios';
+import { RenderGames } from './RenderGames';
 
 export const Games = (props) => {
-const [gamesdata, setGamesData] = useState([]);
-const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const [isEmptyData, setIsEmptyData] = useState(false);
 
-useEffect(() => { getGames(); }, []);
+  const { resp, error } = useAxiosWithParams({
+    methodname: 'GET',
+    parameter1: 'sort-by',
+    parameter2: 'popularity',
+  });
 
-const getGames = async () => {
-    const config = {
-        method: 'get',
-        url: 'https://free-to-play-games-database.p.rapidapi.com/api/games',
-        headers: {
-            'x-rapidapi-key': '07089da5c1msh4207da2f8fccca3p171009jsn2878b94e6662',
-            'x-rapidapi-host': 'free-to-play-games-database.p.rapidapi.com'
-        }
-      };
-      
-      axios(config)
-      .then(function (response) {
-        setGamesData(response.data)
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-      
-}
+  useEffect(() => {
+    if(resp !== null){
+      setIsEmptyData(true);
+      dispatch(saveGamesData(resp));
+    }
+  }, [resp, error]);
 
-const handleDetailsGame = ( getDataDetailsInd ) => {
-    dispatch(
-        saveGameDetails( getDataDetailsInd )
-    );
-    props.onShowModal();
-}
-
-const RenderGames = gamesdata.slice(0, 50)
-
-    return (
-        <Fragment>
-            <div className={classes.Container}>
-                <ul>
-                {gamesdata.length >= 1 ? RenderGames.map((e) => (
-                        <li 
-                            key={e.id}
-                            className={classes.ListStyle}>
-                                <div 
-                                    className={classes.Content}
-                                    onClick={() => handleDetailsGame({
-                                        id: e.id
-                                    })}>
-                                    <img 
-                                        src={e.thumbnail} 
-                                        alt={e.title} 
-                                        className={classes.Img}
-                                    />
-                                    <p className={classes.Title}>{e.title}</p>
-                                    <p className={classes.Desc}>{e.short_description}</p>
-                                </div>
-                        </li>
-                    ))
-                    : <p>Ocurrió un error al cargar la base de datos</p> }
-                </ul>
-            </div>
-        </Fragment>
-    );
+  return (
+    <Fragment>
+      {isEmptyData && <RenderGames onShowModal={props.onShowModal} />}
+    </Fragment>
+  );
 };

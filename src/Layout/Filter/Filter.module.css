@@ -9,12 +9,28 @@
     display: flex;
 }
 
-.platform {
+.title {
     border-radius: 8px;
+    border-color: rgb(59, 59, 59);
     background-color: rgb(59, 59, 59);
     color: rgb(197, 197, 197);
     width: 200px;
-    height: 45px;
+    height: 28px;
+    font-size: 22px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-right: 20px;
+}
+
+.platform {
+    border-radius: 8px;
+    border-color: rgb(59, 59, 59);
+    background-color: rgb(59, 59, 59);
+    color: rgb(197, 197, 197);
+    width: 200px;
+    height: 35px;
     font-size: 18px;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
@@ -25,10 +41,11 @@
 
 .genre {
     border-radius: 8px;
+    border-color: rgb(59, 59, 59);
     background-color: rgb(59, 59, 59);
     color: rgb(197, 197, 197);
     width: 200px;
-    height: 45px;
+    height: 35px;
     font-size: 18px;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
@@ -38,10 +55,11 @@
 
 .year {
     border-radius: 8px;
+    border-color: rgb(59, 59, 59);
     background-color: rgb(59, 59, 59);
     color: rgb(197, 197, 197);
     width: 200px;
-    height: 45px;
+    height: 35px;
     font-size: 18px;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
@@ -51,10 +69,11 @@
 
 .button {
     border-radius: 8px;
-    background-color: rgb(0, 158, 250);
-    color: rgb(0, 0, 0);
+    border-color: rgb(59, 59, 59);
+    background-color: rgb(108, 0, 250);
+    color: rgb(255, 255, 255);
     width: 150px;
-    height: 45px;
+    height: 35px;
     font-size: 18px;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;

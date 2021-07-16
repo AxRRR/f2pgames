@@ -1,39 +1,65 @@
-import React, { Fragment } from 'react';
-import { SearchByCategory, SearchByMulti, SearchByPlatform, SearchByTag } from '../../Components/Search/Search';
+import React, { Fragment, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { filterGamesTitle, saveGamesData } from '../../actions/game';
+import { useAxiosWithParams } from '../../hooks/useAxios';
 import { useFormAutomatic } from '../../hooks/useFormAutomatic';
 import classes from './Filter.module.css'
 
 export const Filter = () => {
+    const [saveData, setSaveData] = useState('');
+
+    const dispatch = useDispatch();
     const [form, handlerInputChange] = useFormAutomatic({
         filterplatform: '',
         filtergenre: '',
-        filtertags: ''
+        filtertags: '',
+        filtertitle: ''
     })
-    
-    const { filterplatform, filtergenre, filtertags } = form
+
+    const { resp, error } = useAxiosWithParams({
+        methodname: 'GET',
+        parameter1: saveData.platform,
+        parameter2: saveData.parameter1,
+        parameter3: saveData.category,
+        parameter4: saveData.parameter2,
+        parameter5: saveData.tag,
+        parameter6: saveData.parameter3,
+    });
+
+    useEffect(() => {
+            dispatch(
+            saveGamesData(resp)
+        );
+    }, [resp, error]);
+
+    const { filterplatform, filtergenre, filtertags, filtertitle } = form
 
     const handleSearch = (e) => {
         e.preventDefault();
-        if(!!filterplatform && !!filtergenre && !!filtertags) 
-            SearchByMulti(filterplatform, filtergenre, filtertags)
-        else if(!!filterplatform && !!filtergenre) 
-            SearchByMulti(filterplatform, filtergenre)
-        else if(!!filtertags && !!filtergenre) 
-            SearchByMulti(filtertags, filtergenre)
-        else if(!!filterplatform && !!filtergenre) 
-            SearchByMulti(filterplatform, filtertags)
-        else if(!!filterplatform) 
-            SearchByPlatform(filterplatform);
-        else if(!!filtergenre) 
-            SearchByCategory(filtergenre);
-        else if(!!filtertags) 
-            SearchByTag(filtertags);
+        if(filtertitle.length > 1){
+            dispatch(filterGamesTitle(filtertitle));
+            console.log(filtertitle)
+        }
+        setSaveData({
+            platform: 'platform', 
+            parameter1: filterplatform,
+            category: 'category',
+            parameter2: filtergenre,
+            tag: 'sort-by',
+            parameter3: filtertags,
+        })
     }
 
     return (
         <Fragment>
             <form onSubmit={handleSearch}>
                 <div className={classes.container}>
+                    <textarea 
+                        type='text' 
+                        name='filtertitle' 
+                        onChange={handlerInputChange} 
+                        className={classes.title}
+                        placeholder='search game' />
                     <select 
                         type='text'
                         name="filterplatform"
@@ -49,8 +75,8 @@ export const Filter = () => {
                         className={classes.genre}>
                             <option value=''>genre</option>
                             <option value='shooter'>Shooter</option>
-                            <option value='PVP'>PVP</option>
-                            <option value='Rol'>Rol</option>
+                            <option value='mmorpg'>MMORPG</option>
+                            <option value='strategy'>Strategy</option>
                             <option value='survival'>Survival</option>
                     </select>
                     <select 
@@ -58,14 +84,14 @@ export const Filter = () => {
                         onChange={handlerInputChange}
                         className={classes.year}>
                             <option value=''>tags</option>
-                            <option value='recently'>Most recently</option>
-                            <option value='popularity'>Most popularity</option>
+                            <option value='release-date'>Most recent</option>
+                            <option value='popularity'>Most popular</option>
                             <option value='alphabetical'>Alphabetical</option>
                     </select>
                     <button
                         type="submit"
                         className={classes.button}>
-                            Search
+                            Apply
                     </button>
                 </div>
             </form>
