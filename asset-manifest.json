@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/static/css/main.faaa7eca.chunk.css",
-    "main.js": "/static/js/main.9f905ecb.chunk.js",
-    "main.js.map": "/static/js/main.9f905ecb.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.d4af54fc.js",
-    "runtime-main.js.map": "/static/js/runtime-main.d4af54fc.js.map",
-    "static/js/2.2ce7ebdb.chunk.js": "/static/js/2.2ce7ebdb.chunk.js",
-    "static/js/2.2ce7ebdb.chunk.js.map": "/static/js/2.2ce7ebdb.chunk.js.map",
-    "index.html": "/index.html",
-    "static/css/main.faaa7eca.chunk.css.map": "/static/css/main.faaa7eca.chunk.css.map",
-    "static/js/2.2ce7ebdb.chunk.js.LICENSE.txt": "/static/js/2.2ce7ebdb.chunk.js.LICENSE.txt"
+    "main.css": "/f2pgames/static/css/main.faaa7eca.chunk.css",
+    "main.js": "/f2pgames/static/js/main.9f905ecb.chunk.js",
+    "main.js.map": "/f2pgames/static/js/main.9f905ecb.chunk.js.map",
+    "runtime-main.js": "/f2pgames/static/js/runtime-main.0a28cd9b.js",
+    "runtime-main.js.map": "/f2pgames/static/js/runtime-main.0a28cd9b.js.map",
+    "static/js/2.2ce7ebdb.chunk.js": "/f2pgames/static/js/2.2ce7ebdb.chunk.js",
+    "static/js/2.2ce7ebdb.chunk.js.map": "/f2pgames/static/js/2.2ce7ebdb.chunk.js.map",
+    "index.html": "/f2pgames/index.html",
+    "static/css/main.faaa7eca.chunk.css.map": "/f2pgames/static/css/main.faaa7eca.chunk.css.map",
+    "static/js/2.2ce7ebdb.chunk.js.LICENSE.txt": "/f2pgames/static/js/2.2ce7ebdb.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.d4af54fc.js",
+    "static/js/runtime-main.0a28cd9b.js",
     "static/js/2.2ce7ebdb.chunk.js",
     "static/css/main.faaa7eca.chunk.css",
     "static/js/main.9f905ecb.chunk.js"
